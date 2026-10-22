@@ -4,20 +4,16 @@ using UnityEngine.SceneManagement;
 
 public class LunaScript : MonoBehaviour
 {
-
     public GameObject crystalPrefab;
     public GameObject robotPrefab;
     private int score = 0;
     private Rigidbody rb;
-
     public float moveSpeed = 5f;
     public int crystalPoints = 50;
     public int robotPoints = -100;
     public TMP_Text scoreText;
-
     private float horizontalInput;
     private float verticalInput;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,7 +29,6 @@ public class LunaScript : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-
     }
 
     private void FixedUpdate()
@@ -48,13 +43,12 @@ public class LunaScript : MonoBehaviour
         Vector3 spawnPosition = new Vector3(transform.position.x + inRadius.x, 3.0f, transform.position.z + inRadius.y);
         GameObject crystal = Instantiate(crystalPrefab, spawnPosition, Quaternion.identity);
         Destroy(crystal, 4f);
-
     }
 
     void SpawnRobots()
     {
         Vector3 inRadius = Random.insideUnitCircle * 7f;
-        Vector3 spawnPosition = new Vector3(transform.position.x + inRadius.x, 3.0f, transform.position.z + inRadius.y);
+        Vector3 spawnPosition = new Vector3(transform.position.x + inRadius.x, 5.0f, transform.position.z + inRadius.y);
         GameObject robot = Instantiate(robotPrefab, spawnPosition, Quaternion.identity);
         Destroy(robot, 4f);
     }
@@ -72,7 +66,6 @@ public class LunaScript : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 return;
             }
-
         }
 
         if (collision.gameObject.CompareTag("Enemy"))
